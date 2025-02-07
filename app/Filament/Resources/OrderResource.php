@@ -43,8 +43,6 @@ class OrderResource extends Resource
                             ->formatStateUsing(fn ($record) => $record->customer->first_name . ' ' . $record->customer->last_name),
                 TextColumn::make('total_price'),
                 TextColumn::make('created_at')->dateTime(),
-
-
             ])
             ->filters([
                 //
