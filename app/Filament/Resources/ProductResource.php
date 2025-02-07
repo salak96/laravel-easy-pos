@@ -19,6 +19,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextInputColumn;
 
 
 class ProductResource extends Resource
@@ -65,9 +66,14 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
-                ImageColumn::make('image')->size(50),
+                ImageColumn::make('image')->disk('public')  
+                                ->size(50)  
+                                ->square(),
                 TextColumn::make('barcode')->sortable()->searchable(),
-                TextColumn::make('quantity')->sortable(),
+                TextInputColumn::make('quantity')->type('number')  
+                                ->sortable()   
+                                ->width(50)
+                                ->rules(['required', 'integer', 'min:1']),
                 TextColumn::make('price')->sortable(),
                 IconColumn::make('status')
                     ->boolean()

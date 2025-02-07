@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Cart;
+use Livewire\Attributes\On; 
 
 class ProductSearch extends Component
 {
@@ -17,6 +18,11 @@ class ProductSearch extends Component
         $currency_symbol = Setting::select('value')->where('key', 'currency_symbol')->first();
         $currency_symbol = $currency_symbol ? $currency_symbol->value : '';
         return view('livewire.product-search', compact('products', 'currency_symbol'));
+    }
+
+    #[On('checkout-completed')]
+    public function checkoutCompleted(){
+        $this->query = '';
     }
 
 

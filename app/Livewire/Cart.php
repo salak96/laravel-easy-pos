@@ -68,6 +68,8 @@ class Cart extends Component
         $this->cartItems = CartModel::where('user_id', auth()->user()->id)
                             ->delete();  
 
+        $this->dispatch('checkout-completed');
+
     }
 
 }
