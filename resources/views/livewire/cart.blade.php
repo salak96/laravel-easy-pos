@@ -1,5 +1,4 @@
-<div class="p-4 border bg-white  rounded">
-    <h2 class="text-lg font-bold mb-2">Shopping Cart</h2>
+<div class="">
 
     @if (session()->has('error'))
         <p class="text-red-500">{{ session('error') }}</p>
@@ -11,10 +10,10 @@
         <table class="min-w-full border border-gray-300">
             <thead>
                 <tr class="bg-gray-200">
-                    <th class="px-4 py-2 border border-gray-400 text-left w-3/5">Item</th>
-                    <th class="px-4 py-2 border border-gray-400 text-center w-1/6"">Price</th>
-                    <th class="px-4 py-2 border border-gray-400 text-center w-1/3">Quantity</th>
-                    <th class="px-4 py-2 border border-gray-400 text-center w-1/6">Total</th>
+                    <th class="px-4 py-2 border border-gray-400 text-left w-3/5 dark:text-gray-800">Item</th>
+                    <th class="px-4 py-2 border border-gray-400 text-center w-1/6 dark:text-gray-800">Price</th>
+                    <th class="px-4 py-2 border border-gray-400 text-center w-1/3 dark:text-gray-800">Quantity</th>
+                    <th class="px-4 py-2 border border-gray-400 text-center w-1/6 dark:text-gray-800">Total</th>
                 </tr>
             </thead>
             <tbody>

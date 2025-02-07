@@ -36,4 +36,5 @@ class ProductSearch extends Component
 
         $this->dispatch('cartUpdated');
     }
+    
 }
