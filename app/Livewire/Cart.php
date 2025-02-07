@@ -45,8 +45,10 @@ class Cart extends Component
 
     public function checkout(){
         
+        $total_price = 0;
         $order = Order::create([
             'customer_id' => 1,
+            'total_price' => $total_price
         ]);
 
         $items = $this->cartItems;
@@ -63,10 +65,13 @@ class Cart extends Component
                 'quantity' => $item->quantity,
                 'product_id' => $item->product_id,
             ]);
+            $total_price += $item->quantity * $product->price;
             $product->quantity = $product->quantity - $item->quantity;
             $product->save();
         }
-
+        
+        $order->total_price = $total_price;
+        $order->save();
 
         $this->cartItems = CartModel::where('user_id', auth()->user()->id)
                             ->delete();  

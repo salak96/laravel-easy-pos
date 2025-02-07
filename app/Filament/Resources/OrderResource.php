@@ -35,13 +35,22 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
+                TextColumn::make('id')->label('ID')->sortable(),
+                TextColumn::make('customer.first_name')
+                            ->label('Customer Name')
+                            ->sortable()
+                            ->searchable()
+                            ->formatStateUsing(fn ($record) => $record->customer->first_name . ' ' . $record->customer->last_name),
+                TextColumn::make('total_price'),
+                TextColumn::make('created_at')->dateTime(),
+
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

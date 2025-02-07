@@ -7,7 +7,7 @@
         <div class="grid grid-cols-3 gap-2">
             @foreach ($products as $product)
             <div wire:click="addToCart({{$product->id}})" class="relative bg-white border border-gray-300 rounded">
-                <img src="{{url('img/img-placeholder.jpg')}}" alt="Product 1" class="object-contain max-h-full">
+                <img src="{{$product->getImageUrl()}}" alt="Product 1" class="object-contain max-h-full">
                 <p class="text-gray-600 p-2 text-sm">{{$product->name}} ({{$product->quantity}})</p>
                 <p class="text-gray-600 p-2 pt-0 text-md">{{$currency_symbol .  $product->price}}</p>
                 @if($product->quantity < 1)
