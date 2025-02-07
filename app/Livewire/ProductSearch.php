@@ -25,17 +25,18 @@ class ProductSearch extends Component
 
         $product = Product::find( $product_id );
         $user_id = auth()->user()->id;
-        $cart = Cart::firstOrCreate(
+        $cartItem = Cart::firstOrCreate(
             ['user_id' => $user_id, 'product_id' => $product_id],  
             ['quantity' => 0] 
         );
 
-        if( $product->quantity < ($cart->quantity + $quantity) ){
+        if( $product->quantity < ($cartItem->quantity + $quantity) ){
+            $cartItem->delete();
             return;
         }
         
-        $cart->update([
-            'quantity' => $cart->quantity + $quantity
+        $cartItem->update([
+            'quantity' => $cartItem->quantity + $quantity
         ]);
 
         $this->dispatch('cartUpdated');

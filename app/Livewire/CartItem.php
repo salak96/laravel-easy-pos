@@ -38,7 +38,7 @@ class CartItem extends Component
 
         if ($this->quantity > 0) {
             $product = Product::find( $this->cartItem->product_id );
-            if( $product->quantity < $this->cartItem->quantity ){
+            if( $product->quantity <  $this->quantity ){
                 $this->quantity = $this->cartItem->quantity;
                 return view('livewire.cart-item');
             }
