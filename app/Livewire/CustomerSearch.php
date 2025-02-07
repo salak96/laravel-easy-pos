@@ -22,11 +22,17 @@ class CustomerSearch extends Component
     {
         $customer = Customer::find($customerId);
         if ($customer) {  
-            $this->selectedCustomer = $customer->name;
-            $this->query = $customer->name;  
+            $this->selectedCustomer = $customer;
             $this->showDropdown = false;  
             $this->dispatch('customerSelected', $customerId);
         }
+    }
+
+
+    public function clear(){
+        $this->selectedCustomer = null;
+        $this->query = '';
+        $this->dispatch('customerSelected', null);
     }
 
     public function render()

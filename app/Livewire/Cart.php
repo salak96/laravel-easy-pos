@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Cart as CartModel;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\Setting;
 use Livewire\Attributes\On; 
 
@@ -38,6 +40,34 @@ class Cart extends Component
             ->where('user_id', auth()->user()->id)
             ->orderBy('id', 'DESC')
              ->get();
+    }
+
+
+    public function checkout(){
+        
+        $order = Order::create([
+            'customer_id' => 1,
+        ]);
+
+        $items = $this->cartItems;
+
+
+        foreach ($items as $item) {  
+            $product = Product::find( $item->product_id );
+
+            $order->items()->create([
+                'price' => $product->price,
+                'quantity' => $item->quantity,
+                'product_id' => $item->product_id,
+            ]);
+            $product->quantity = $product->quantity - $item->quantity;
+            $product->save();
+        }
+
+
+        $this->cartItems = CartModel::where('user_id', auth()->user()->id)
+                            ->delete();  
+
     }
 
 }

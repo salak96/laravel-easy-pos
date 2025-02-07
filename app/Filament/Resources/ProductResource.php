@@ -38,7 +38,7 @@ class ProductResource extends Resource
                         ->maxLength(255),
                     TextInput::make('barcode')
                         ->required()
-                        ->unique(Product::class, 'barcode'),
+                        ->unique(Product::class, 'barcode', ignoreRecord: true),
                     TextInput::make('price')
                         ->numeric()
                         ->required(),

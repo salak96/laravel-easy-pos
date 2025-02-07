@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Product;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 
@@ -36,6 +37,11 @@ class CartItem extends Component
     {
 
         if ($this->quantity > 0) {
+            $product = Product::find( $this->cartItem->product_id );
+            if( $product->quantity < $this->cartItem->quantity ){
+                $this->quantity = $this->cartItem->quantity;
+                return view('livewire.cart-item');
+            }
             $this->cartItem->quantity = $this->quantity;
             $this->cartItem->save();
         } 

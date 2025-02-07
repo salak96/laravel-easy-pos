@@ -11,7 +11,6 @@ class ProductSearch extends Component
 {
     public $query = '';
 
-
     public function render()
     {
         $products = Product::where('name', 'like', '%' . $this->query . '%')->limit(10)->get();
@@ -24,11 +23,16 @@ class ProductSearch extends Component
 
     public function addToCart( $product_id, $quantity = 1 ){
 
+        $product = Product::find( $product_id );
         $user_id = auth()->user()->id;
         $cart = Cart::firstOrCreate(
             ['user_id' => $user_id, 'product_id' => $product_id],  
             ['quantity' => 0] 
         );
+
+        if( $product->quantity < ($cart->quantity + $quantity) ){
+            return;
+        }
         
         $cart->update([
             'quantity' => $cart->quantity + $quantity
@@ -36,5 +40,5 @@ class ProductSearch extends Component
 
         $this->dispatch('cartUpdated');
     }
-    
+
 }
