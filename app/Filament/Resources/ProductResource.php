@@ -52,9 +52,9 @@ class ProductResource extends Resource
                         ->maxLength(500)
                         ->nullable(),
                     FileUpload::make('image')
-                        ->image()
-                        ->directory('products')
-                        ->nullable(),
+                        ->disk('public_uploads') 
+                        ->panelLayout('grid') 
+                        ->visibility('public'),
                     Toggle::make('status')
                         ->label('Active')
                         ->default(true)
@@ -66,7 +66,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
-                ImageColumn::make('image')->disk('public')  
+                ImageColumn::make('image')->disk('public_uploads')  
                                 ->size(50)  
                                 ->square(),
                 TextColumn::make('barcode')->sortable()->searchable(),
