@@ -51,6 +51,9 @@ class Cart extends Component
 
         $items = $this->cartItems;
 
+        if( ! is_countable( $items ) ){
+            return;
+        }
 
         foreach ($items as $item) {  
             $product = Product::find( $item->product_id );
