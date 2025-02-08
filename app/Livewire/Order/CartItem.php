@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Order;
 
 use App\Models\Product;
 use Livewire\Component;
@@ -14,8 +14,12 @@ class CartItem extends Component
 
     public $quantity;
 
-    public function mount($cartItem)
-    {
+    public $orderId;
+
+
+    public function mount($cartItem, $orderId)
+    {  
+        $this->orderId = $orderId;
         $this->cartItem = $cartItem;
         $this->quantity = $cartItem->quantity;
     }
@@ -25,27 +29,41 @@ class CartItem extends Component
         $this->quantity = $this->cartItem->quantity;
     }
 
+
     public function removeFromCart()
-    {
+    {   
+        $product = Product::find( $this->cartItem->product_id );
+        $product->quantity = $product->quantity + $this->quantity;
+        $product->save();
+        
         $this->quantity = 0;
         $this->cartItem->delete();
         $this->dispatch('cartUpdated');
     }
+
 
     public function updated(){
         if ($this->quantity > 0) {
             $product = Product::find( $this->cartItem->product_id );
             if( $product->quantity <  $this->quantity ){
                 $this->quantity = $this->cartItem->quantity;
-                return view('livewire.cart-item');
+                return;
             }
+
+            $product->quantity = $product->quantity + $this->cartItem->quantity;
+            $product->save();  
+
             $this->cartItem->quantity = $this->quantity;
             $this->cartItem->save();
+
+            $product->quantity = $product->quantity - $this->quantity;
+            $product->save();
+            $this->dispatch('cartUpdated');
         } 
     }
 
     public function render()
-    {  
-        return view('livewire.cart-item');
+    {      
+        return view('livewire.order.cart-item');
     }
 }

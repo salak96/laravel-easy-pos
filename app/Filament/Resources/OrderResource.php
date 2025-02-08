@@ -48,7 +48,7 @@ class OrderResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -74,7 +74,7 @@ class OrderResource extends Resource
         return [
             'index' => Pages\ListOrders::route('/'),
             // 'create' => Pages\CreateOrder::route('/create'),
-            // 'edit' => Pages\EditOrder::route('/{record}/edit'),
+            'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
     }
 }
