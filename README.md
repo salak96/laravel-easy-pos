@@ -5,12 +5,6 @@
 A simple, open-source **Point of Sale (POS) system** built with Laravel and FilamentPHP.
 
 
-**🚀 Demo Available:** Live Demo
-
-
-### **POS Interface**  
-![POS Interface](https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/laravel-easy-pos.png)  
-
 ## Features 🛠️
 - ✅ Easy-to-use POS interface
 - ✅ Built with Laravel & FilamentPHP
@@ -18,6 +12,13 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 - ✅ Inventory & product management
 - ✅ Sales tracking & reports
 - ✅ Responsive UI
+
+**🚀 Demo Available:** Live Demo
+
+
+### **POS Interface**  
+![POS Interface](https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/laravel-easy-pos.png)  
+
 
 ## Installation Guide 🏗️
 
