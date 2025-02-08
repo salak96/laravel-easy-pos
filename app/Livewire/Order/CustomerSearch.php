@@ -31,11 +31,15 @@ class CustomerSearch extends Component
         $this->showDropdown = count($this->customers) > 0;
     }
 
+
     public function selectCustomer($customerId)
     {
         $customer = Customer::find($customerId);
         if ($customer) {  
             session(['customer_id' => $customer->id]);
+            $order = Order::find($this->orderId);
+            $order->customer_id = $customer->id;
+            $order->save();
             $this->selectedCustomer = $customer;
             $this->showDropdown = false;  
             $this->dispatch('customerSelected', $customerId);
