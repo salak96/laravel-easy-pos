@@ -60,6 +60,10 @@ npm run build
 php artisan serve
 ```
 
+**Username:** admin@admin.com
+**Password:** pass@123
+
+
 ✅ That's it! No further commands needed. The installation is automatic. 🎉 
 Navigate the website. 
 

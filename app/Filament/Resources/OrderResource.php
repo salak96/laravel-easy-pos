@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -13,6 +12,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\DatePicker;
 
 class OrderResource extends Resource
 {
@@ -46,7 +47,18 @@ class OrderResource extends Resource
             ])
             ->defaultSort('id', 'desc')
             ->filters([
-                //
+                Filter::make('created_at')
+                ->form([
+                    DatePicker::make('start_date')
+                        ->label('From Date'),
+                    DatePicker::make('end_date')
+                        ->label('To Date'),
+                ])
+                ->query(function ($query, array $data) {
+                    return $query
+                        ->when($data['start_date'] ?? null, fn ($query, $date) => $query->whereDate('created_at', '>=', $date))
+                        ->when($data['end_date'] ?? null, fn ($query, $date) => $query->whereDate('created_at', '<=', $date));
+                }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
