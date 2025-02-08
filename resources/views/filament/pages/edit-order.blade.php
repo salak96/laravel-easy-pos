@@ -15,5 +15,6 @@
         <div class="w-1/3">
             <livewire:order.product-search :order-id="$this->record->id" />
         </div>
-    </div>    
+    </div>  
+    <livewire:error />  
 </x-filament-panels::page>

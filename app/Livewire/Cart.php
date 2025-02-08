@@ -46,8 +46,13 @@ class Cart extends Component
     public function checkout(){
         
         $total_price = 0;
+        $customerId =  session('customer_id');
+        if( empty($customerId) ){
+
+            return $this->dispatch('error', error: 'Please select customer!');
+        }
         $order = Order::create([
-            'customer_id' => 1,
+            'customer_id' => $customerId,
             'total_price' => $total_price
         ]);
 

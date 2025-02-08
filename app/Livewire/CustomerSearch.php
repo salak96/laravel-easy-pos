@@ -12,9 +12,19 @@ class CustomerSearch extends Component
     public $selectedCustomer = null;
     public $showDropdown = false;  
 
+    public function mount(){
+        $customerId = session('customer_id');
+        if( $customerId ){
+            $this->selectedCustomer = Customer::find( $customerId );
+        }
+    }
+
     public function updatedQuery()
     {
-        $this->customers = Customer::where('first_name', 'like', '%' . $this->query . '%')->limit(5)->get();
+        $this->customers = Customer::where('first_name', 'like', '%' . $this->query . '%')
+                            ->orWhere('phone', 'like', '%' . $this->query . '%')
+                            ->limit(5)
+                            ->get();
         $this->showDropdown = count($this->customers) > 0;
     }
 
@@ -22,6 +32,7 @@ class CustomerSearch extends Component
     {
         $customer = Customer::find($customerId);
         if ($customer) {  
+            session(['customer_id' => $customer->id]);
             $this->selectedCustomer = $customer;
             $this->showDropdown = false;  
             $this->dispatch('customerSelected', $customerId);
@@ -30,6 +41,7 @@ class CustomerSearch extends Component
 
 
     public function clear(){
+        session(['customer_id' => null]);
         $this->selectedCustomer = null;
         $this->query = '';
         $this->dispatch('customerSelected', null);

@@ -44,11 +44,13 @@ class OrderResource extends Resource
                 TextColumn::make('total_price'),
                 TextColumn::make('created_at')->dateTime(),
             ])
+            ->defaultSort('id', 'desc')
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

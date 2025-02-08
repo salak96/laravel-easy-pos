@@ -45,7 +45,7 @@ class Cart extends Component
     }
 
 
-    public function checkout(){
+    public function checkout(){ return;
         
         $total_price = 0;
         $order = Order::create([

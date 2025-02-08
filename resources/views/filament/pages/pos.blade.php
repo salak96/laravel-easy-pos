@@ -15,5 +15,6 @@
         <div class="w-1/3">
             <livewire:product-search />
         </div>
-    </div>    
+    </div> 
+    <livewire:error />
 </x-filament-panels::page>
