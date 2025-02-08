@@ -83,6 +83,8 @@ class Cart extends Component
 
         $this->dispatch('checkout-completed');
 
+        redirect( url('/admin/orders/'. $order->id .'/edit') );
+
     }
 
 }
