@@ -9,7 +9,6 @@
                     <livewire:customer-search />
                 </div>
             </div>
-
             <livewire:cart />
         </div>
         <div class="w-1/3">

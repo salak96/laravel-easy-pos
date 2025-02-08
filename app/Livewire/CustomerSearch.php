@@ -16,6 +16,7 @@ class CustomerSearch extends Component
         $customerId = session('customer_id');
         if( $customerId ){
             $this->selectedCustomer = Customer::find( $customerId );
+            $this->query = '-';  
         }
     }
 

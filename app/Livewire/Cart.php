@@ -40,6 +40,9 @@ class Cart extends Component
             ->where('user_id', auth()->user()->id)
             ->orderBy('id', 'DESC')
              ->get();
+
+        $currency_symbol = Setting::select('value')->where('key', 'currency_symbol')->first();
+        $this->currency_symbol = $currency_symbol ? $currency_symbol->value : '';
     }
 
 
