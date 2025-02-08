@@ -1,5 +1,6 @@
-## Laravel Easy POS 🎉
-
+<p align="center">
+    <h1 align="center">Laravel Easy POS 🎉</h1>
+</p>
 
 A simple, open-source **Point of Sale (POS) system** built with Laravel and FilamentPHP.
 
