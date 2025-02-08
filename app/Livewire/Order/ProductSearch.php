@@ -49,8 +49,10 @@ class ProductSearch extends Component
             ['quantity' => 0, 'price' => $product->price] 
         );
 
-        if( $product->quantity < ($cartItem->quantity + $quantity) ){
-            $cartItem->delete();
+        if( ($product->quantity - $quantity) < 0 ){
+            if( $cartItem->quantity < 1 ){
+                $cartItem->delete();
+            }
             return;
         }
         
