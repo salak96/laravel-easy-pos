@@ -7,7 +7,6 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 **🚀 Demo Available:** Live Demo
 
-## **Screenshots** 📸  
 
 ### **POS Interface**  
 ![POS Interface](https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/laravel-easy-pos.png)  
