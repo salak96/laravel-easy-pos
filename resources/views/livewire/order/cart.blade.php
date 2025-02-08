@@ -16,9 +16,16 @@
         @if ( !is_countable($cartItems) || count($cartItems) < 1)
             <tr class="min-h-32"><td class="p-4">Add Items.</td></tr>
         @else
+            @php $total_price = 0 @endphp
             @foreach ($cartItems as $item) 
+                @php $total_price += ( $item->product->price * $item->quantity ); @endphp
                 <livewire:order.cart-item :cartItem="$item" :currency_symbol="$currency_symbol" :order-id="$orderId" :key="$item->id" />
             @endforeach
+            <tr class="odd:bg-white even:bg-gray-100 border-gray-400 border">
+                <td class="px-4 py-2 dark:text-gray-800"></td>
+                <td class="px-4 py-2 border-gray-400 border-r text-center dark:text-gray-800 font-semibold">Total</td>
+                <td class="px-4 py-2 text-center font-semibold" colspan='2'>{{$currency_symbol}}{{number_format($total_price , 2, '.', '') }}</td>
+            </tr>
         @endif
         </tbody>
     </table>

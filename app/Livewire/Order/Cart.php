@@ -39,6 +39,8 @@ class Cart extends Component
     #[On('cartUpdated')]
     public function updateCart()
     {
+        $currency_symbol       = Setting::select('value')->where('key', 'currency_symbol')->first();
+        $this->currency_symbol = $currency_symbol ? $currency_symbol->value : '';
         $this->cartItems = OrderItem::where('order_id', $this->orderId)            
                                         ->orderBy('id', 'DESC')
                                         ->get();
