@@ -4,6 +4,7 @@ namespace App\Livewire\Order;
 
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\OrderItem;
 use Livewire\Component;
 
 class BarcodeScan extends Component
@@ -34,14 +35,21 @@ class BarcodeScan extends Component
             $this->query = '';
             return;
         }
-        $user_id = auth()->user()->id;
-        $cart = Cart::firstOrCreate(
-            ['user_id' => $user_id, 'product_id' => $product->id],  
-            ['quantity' => 0] 
+
+        $cartItem  = OrderItem::firstOrCreate(
+            ['order_id' => $this->orderId, 'product_id' => $product->id],  
+            ['quantity' => 0, 'price' => $product->price] 
         );
+
+        if( ($product->quantity - $quantity) < 0 ){
+            if( $cartItem->quantity < 1 ){
+                $cartItem->delete();
+            }
+            return;
+        }
         
-        $cart->update([
-            'quantity' => $cart->quantity + $quantity
+        $cartItem->update([
+            'quantity' => $cartItem->quantity + $quantity
         ]);
 
         $product->quantity = $product->quantity - $quantity;

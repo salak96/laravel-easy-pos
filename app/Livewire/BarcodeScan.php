@@ -22,19 +22,27 @@ class BarcodeScan extends Component
         $this->error = '';
         $quantity = 1;
         $product = Product::where('barcode', $this->query)->first();
+        
         if( !$product ){
             $this->error = 'The '. $this->query . ' ' . ' - Product which does not exist!';
             $this->query = '';
             return;
         }
         $user_id = auth()->user()->id;
-        $cart = Cart::firstOrCreate(
+        $cartItem = Cart::firstOrCreate(
             ['user_id' => $user_id, 'product_id' => $product->id],  
             ['quantity' => 0] 
         );
+
+        if( $product->quantity < ($cartItem->quantity + $quantity) ){
+            if($cartItem->quantity < 1 ){
+                $cartItem->delete();
+            }
+            return;
+        }
         
-        $cart->update([
-            'quantity' => $cart->quantity + $quantity
+        $cartItem->update([
+            'quantity' => $cartItem->quantity + $quantity
         ]);
 
         $this->query = '';
