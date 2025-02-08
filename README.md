@@ -28,14 +28,14 @@ git clone https://github.com/your-username/laravel-easy-pos.git
 cd laravel-easy-pos
 
 ```
-2. Copy .env file & configure MySQL credentials:
+2. **Copy .env file & configure MySQL credentials:**
 
 ```shell
 cp .env.example .env
 
 ```
 
-3. Update .env file
+3. **Update .env file**
 
 ```shell
 DB_DATABASE=your_database
@@ -45,7 +45,7 @@ APP_URL=http://localhost
 
 ```
 
-4. Install dependencies:
+4. **Install dependencies:**
 
 ```shell
 composer install
@@ -53,7 +53,7 @@ npm install
 npm run build
 ```
 
-5. Run the application:
+5. **Run the application:**
 
 ```shell
 php artisan serve
