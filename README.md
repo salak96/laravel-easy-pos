@@ -28,18 +28,18 @@ git clone https://github.com/mailmug/laravel-easy-pos.git
 cd laravel-easy-pos
 
 ```
-2. **Copy .env file & configure MySQL credentials:**
+2. **Copy .env file**
 
 ```shell
 cp .env.example .env
 php artisan key:generate
-
 
 ```
 
 3. **Update .env file**
 
 ```shell
+DB_CONNECTION=mysql
 DB_DATABASE=your_database
 DB_USERNAME=your_username
 DB_PASSWORD=your_password
