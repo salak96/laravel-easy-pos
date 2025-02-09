@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
 
         for ($i = 0; $i < 5; $i++) {
             Product::create([
-                'name' => $faker->word,
+                'name' => ucwords($faker->word),
                 'description' => $faker->sentence,
                 'image' => '',
                 'quantity' => 50,
