@@ -61,6 +61,8 @@ npm run build
 php artisan serve
 ```
 
+Navigate to the home page, and it will automatically add the demo data.
+
 **Username:** admin@admin.com
 
 **Password:** pass@123
