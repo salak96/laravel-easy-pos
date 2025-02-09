@@ -32,6 +32,8 @@ cd laravel-easy-pos
 
 ```shell
 cp .env.example .env
+php artisan key:generate
+
 
 ```
 
