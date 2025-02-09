@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 
 class InstallController extends Controller
 {
     public function install()
     {
-        $currency_symbol = Setting::select('value')->where('key', 'currency_symbol')->first();
-        
-        if( $currency_symbol ){
+        if (Schema::hasTable('setting')) {
             return;
         }
 
