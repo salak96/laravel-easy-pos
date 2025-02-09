@@ -11,6 +11,7 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 - ✅ Sales tracking & reports
 - ✅ Responsive UI
 
+
 **🚀 Demo Available:** Live Demo
 
 
