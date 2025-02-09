@@ -16,7 +16,7 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 
 ### **POS Interface**  
-![POS Interface](https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/laravel-easy-pos.png)  
+![POS Interface](https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/laravel-easy-pos.png)  
 
 
 ## Installation Guide 🏗️
@@ -24,7 +24,7 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 1. **Clone the repository:**
 
 ```shell
-git clone https://github.com/your-username/laravel-easy-pos.git
+git clone https://github.com/mailmug/laravel-easy-pos.git
 cd laravel-easy-pos
 
 ```
