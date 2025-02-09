@@ -278,13 +278,13 @@
        ry="1" />
     <text
        xml:space="preserve"
-       style="font-style:italic;font-weight:bold;font-size:44.8792px;line-height:73.517px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue, Bold Italic';text-align:center;letter-spacing:-1.32292px;text-anchor:middle;fill:#007bff;fill-opacity:1;stroke:none;stroke-width:5.58824;stroke-linecap:round;stroke-linejoin:round"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:44.8792px;line-height:73.517px;font-family:Poppins;-inkscape-font-specification:'Poppins, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:-1.32292px;text-anchor:middle;fill:#007bff;fill-opacity:1;stroke:none;stroke-width:5.58824;stroke-linecap:round;stroke-linejoin:round"
        x="263.69266"
        y="99.111526"
        id="text1"
        transform="scale(1.0479377,0.9542552)"><tspan
          id="tspan1"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';letter-spacing:-1.32292px;fill:#007bff;fill-opacity:1;stroke:none;stroke-width:5.58824"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:44.8792px;font-family:Poppins;-inkscape-font-specification:'Poppins, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:-1.32292px;fill:#007bff;fill-opacity:1;stroke:none;stroke-width:5.58824"
          x="263.03119"
          y="99.111526"
          dx="0 0 0 0 -0.13">Easy POS</tspan></text>
