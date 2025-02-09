@@ -1,7 +1,7 @@
 <p align="center">
     <h1 align="center">Laravel Easy POS 🎉</h1>
 </p>
-<p align="center"><a href="#"><img src="https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/pos-logo.png" width="400" alt="Laravel POS Logo"></a></p>
+<p align="center"><a href="#"><img src="https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/pos-logo.svg" width="400" alt="Laravel POS Logo"></a></p>
 
 A simple, open-source **Point of Sale (POS) system** built with Laravel and FilamentPHP.
 
