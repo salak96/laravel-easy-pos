@@ -8,7 +8,7 @@
                 <svg wire:loading.remove wire:target='removeFromCart'  xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
-                <div wire:loading wire:target='removeFromCart'  class="w-5 h-5 border-2 border-t-red-100 border-transparent rounded-full animate-spin"></div>
+                <span wire:loading wire:target='removeFromCart'  class="w-4 h-4 border-2 border-t-red-100 border-transparent rounded-full animate-spin"></span>
             </button>
         </div>
     </td>
