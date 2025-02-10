@@ -38,7 +38,7 @@ class CartItem extends Component
         
         $this->quantity = 0;
         $this->cartItem->delete();
-        $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdatedFromItem');
     }
 
 
@@ -62,7 +62,7 @@ class CartItem extends Component
         if ($this->quantity < 0){
             $this->quantity = 1;
         }
-        $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdatedFromItem');
     }
 
     public function render()

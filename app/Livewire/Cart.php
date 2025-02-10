@@ -32,13 +32,27 @@ class Cart extends Component
     }
 
 
-    #[On('cartUpdated')]
+    #[On('cartUpdated')] 
     public function updateCart()
     {
         $this->cartItems = CartModel::with('product')
-            ->where('user_id', auth()->user()->id)
-            ->orderBy('id', 'DESC')
-             ->get();
+                            ->where('user_id', auth()->user()->id)
+                            ->orderBy('id', 'DESC')
+                            ->get();
+
+        $this->currency_symbol = config('settings.currency_symbol');
+
+    }
+
+
+
+    #[On('cartUpdatedFromItem')] 
+    public function cartUpdatedFromItem()
+    {
+        $this->cartItems = CartModel::with('product')
+                            ->where('user_id', auth()->user()->id)
+                            ->orderBy('id', 'DESC')
+                            ->get();
 
         $this->currency_symbol = config('settings.currency_symbol');
 

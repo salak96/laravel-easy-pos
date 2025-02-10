@@ -29,18 +29,18 @@ class CartItem extends Component
     {
         $this->quantity = 0;
         $this->cartItem->delete();
-        $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdatedFromItem');
     }
 
     public function updated(){
-        if ($this->quantity > 0) {
+        if ($this->quantity > 0) {  
             $product = Product::find( $this->cartItem->product_id );
             if( $product->quantity <  $this->quantity ){  
                 $this->quantity = $product->quantity;
             }
             $this->cartItem->quantity = $this->quantity;
             $this->cartItem->save();
-            $this->dispatch('cartUpdated');
+            $this->dispatch('cartUpdatedFromItem');
         } 
     }
 

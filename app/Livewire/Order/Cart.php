@@ -45,6 +45,15 @@ class Cart extends Component
     }
 
 
+    #[On('cartUpdatedFromItem')] 
+    public function cartUpdatedFromItem()
+    {
+        $this->cartItems = OrderItem::where('order_id', $this->orderId)            
+                                        ->orderBy('id', 'DESC')
+                                        ->get();
+    }
+
+
     public function checkout(){ 
         return $this->redirect( url('admin/orders') );
     }

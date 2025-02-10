@@ -1,4 +1,5 @@
 <tr class="odd:bg-white even:bg-gray-100">
+    @if($cartItem->product)
     <td class="px-4 py-2 border-r dark:text-gray-800">{{ $cartItem->product->name }}</td>
     <td class="px-4 py-2 border-r text-center dark:text-gray-800">{{ $cartItem->product->price }}</td>
     <td class="px-4 py-2 border-r text-center dark:text-gray-800">
@@ -12,6 +13,6 @@
             </button>
         </div>
     </td>
-    
     <td class="px-4 py-2 text-center">{{ number_format($cartItem->product->price * $cartItem->quantity , 2, '.', '') }}</td>
+    @endif
 </tr>
