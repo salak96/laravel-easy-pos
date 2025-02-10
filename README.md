@@ -31,8 +31,9 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 1. Download zip file 
 https://filament-pos.phpbolt.com/laravel-easy-pos.zip
 
-2. Upload file to **public_html** folder 
-Point domain name to public_html/public folder 
+2. Upload file to **public_html** folder.
+
+Point domain name to public_html/public folder.
 
 3. Navigate your-domain.com/install
 
