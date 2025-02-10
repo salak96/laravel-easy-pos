@@ -11,7 +11,7 @@ class InstallController extends Controller
 {
     public function install()
     {
-        if (Schema::hasTable('setting')) {
+        if (Schema::hasTable('settings')) {
             return;
         }
 

@@ -21,7 +21,7 @@ class SettingsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     { 
-        if (!Schema::hasTable('setting')) {
+        if (!Schema::hasTable('settings')) {
             return;
         }
         $settings = Setting::pluck('value', 'key')->toArray();
