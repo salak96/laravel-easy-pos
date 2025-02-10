@@ -18,3 +18,6 @@ Route::get('/', function () {
     app(InstallController::class)->install();
     return redirect( url('admin/') );
 });
+
+
+Route::get('/install',  [InstallController::class, 'install']);
