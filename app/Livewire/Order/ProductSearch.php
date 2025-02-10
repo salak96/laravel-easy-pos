@@ -40,6 +40,9 @@ class ProductSearch extends Component
     { 
     }
 
+    public function updated(){
+        $this->products = Product::where('name', 'like', '%' . $this->query . '%')->limit(10)->get();
+    }
 
     public function addToCart( $product_id, $quantity = 1 ){
 

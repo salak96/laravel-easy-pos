@@ -7,6 +7,21 @@
         <div class="grid grid-cols-3 gap-2">
             @foreach ($products as $product)
             <div wire:click="addToCart({{$product->id}})" class="relative bg-white border border-gray-300 rounded">
+
+                <div wire:loading wire:target="addToCart({{ $product->id }})"  class="bg-gray-200 bg-opacity-80 absolute p-2 w-full h-full text-red-500" >
+                    <svg class="absolute h-12 w-12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" viewBox="0 0 120 30" fill="currentColor">
+                        <circle cx="15" cy="15" r="10" fill="red">
+                            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="60" cy="15" r="10" fill="red">
+                            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                        </circle>
+                        <circle cx="105" cy="15" r="10" fill="red">
+                            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.6s"/>
+                        </circle>
+                    </svg>
+                </div>
+
                 <img src="{{$product->getImageUrl()}}" alt="Product 1" class="object-contain max-h-full">
                 <p class="text-gray-600 p-2 text-sm">{{$product->name}} ({{$product->quantity}})</p>
                 <p class="text-gray-600 p-2 pt-0 text-md">{{$currency_symbol .  $product->price}}</p>
