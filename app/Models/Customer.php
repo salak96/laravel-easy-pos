@@ -23,8 +23,8 @@ class Customer extends Model
         return Storage::url($this->avatar);
     }
 
-    public function user(): BelongsTo
+    public function orders()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Order::class);
     }
 }

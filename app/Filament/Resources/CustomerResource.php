@@ -15,6 +15,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\CustomerResource\RelationManagers\OrdersRelationManager;
+
 
 class CustomerResource extends Resource
 {
@@ -56,8 +58,10 @@ class CustomerResource extends Resource
                 TextColumn::make('last_name')->searchable(),
                 TextColumn::make('email')->searchable(),
                 TextColumn::make('phone')->searchable(),
-                TextColumn::make('address')->limit(30),
-                ImageColumn::make('avatar')->size(50),
+                TextColumn::make('orders_count')
+                            ->label('Orders')
+                            ->counts('orders')  
+                            ->sortable(),                
                 TextColumn::make('created_at')->sortable()->dateTime(),
             ])
             ->filters([])
@@ -72,14 +76,16 @@ class CustomerResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            OrdersRelationManager::class
+        ];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
+            // 'create' => Pages\CreateCustomer::route('/create'),
             'edit' => Pages\EditCustomer::route('/{record}/edit'),
         ];
     }
