@@ -45,11 +45,12 @@ class CartItem extends Component
     public function updated(){
         if ($this->quantity > 0) {
             $product = Product::find( $this->cartItem->product_id );
+            $product->quantity = $product->quantity + $this->cartItem->quantity;
+
             if( $product->quantity <  $this->quantity ){
                 $this->quantity = $product->quantity;
             }
-            $this->cartItem->quantity = $this->quantity;
-            $product->quantity = $product->quantity + $this->cartItem->quantity;
+
             $product->save();  
 
             $this->cartItem->quantity = $this->quantity;
@@ -57,8 +58,11 @@ class CartItem extends Component
 
             $product->quantity = $product->quantity - $this->quantity;
             $product->save();
-            $this->dispatch('cartUpdated');
         } 
+        if ($this->quantity < 0){
+            $this->quantity = 1;
+        }
+        $this->dispatch('cartUpdated');
     }
 
     public function render()
