@@ -46,7 +46,7 @@ class Cart extends Component
 
 
     public function checkout(){ 
-        return;
+        return $this->redirect( url('admin/orders') );
     }
 
 }
