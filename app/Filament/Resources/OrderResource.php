@@ -58,6 +58,19 @@ class OrderResource extends Resource
                     return $query
                         ->when($data['start_date'] ?? null, fn ($query, $date) => $query->whereDate('created_at', '>=', $date))
                         ->when($data['end_date'] ?? null, fn ($query, $date) => $query->whereDate('created_at', '<=', $date));
+                }) 
+                ->indicateUsing(function (array $data) {
+                    $indicators = [];
+        
+                    if (!empty($data['start_date'])) {
+                        $indicators[] = 'From: ' . $data['start_date'];
+                    }
+        
+                    if (!empty($data['end_date'])) {
+                        $indicators[] = 'To: ' . $data['end_date'];
+                    }
+        
+                    return $indicators;
                 }),
             ])
             ->actions([
