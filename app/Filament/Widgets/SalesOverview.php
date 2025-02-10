@@ -13,6 +13,8 @@ class SalesOverview extends BaseWidget
 {
     protected function getStats(): array
     {
+        $currency_symbol = config('settings.currency_symbol');
+
         $totalOrdersLast30Days = Order::where('created_at', '>=', Carbon::now()->subDays(30))->count();
         $totalIncomeLast30Days = Order::where('created_at', '>=', Carbon::now()->subDays(30))->sum('total_price');
         $totalcustomersLast30Days = Customer::where('created_at', '>=', Carbon::now()->subDays(30))->count();
@@ -24,7 +26,7 @@ class SalesOverview extends BaseWidget
                     ->chart([1,5,10,50])
                     ->color('success'),
 
-            Stat::make('Income', $totalIncomeLast30Days)
+            Stat::make('Income', $currency_symbol.$totalIncomeLast30Days)
                     ->description("Total income in the last 30 days")
                     ->descriptionIcon('heroicon-o-banknotes', IconPosition::Before)
                     ->chart([1,5,30, 50])
