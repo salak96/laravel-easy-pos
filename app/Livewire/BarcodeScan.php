@@ -19,6 +19,11 @@ class BarcodeScan extends Component
 
 
     public function addToCart(){
+
+        if( empty($this->query) ){
+            return;
+        }
+        
         $this->error = '';
         $quantity = 1;
         $product = Product::where('barcode', $this->query)->first();
