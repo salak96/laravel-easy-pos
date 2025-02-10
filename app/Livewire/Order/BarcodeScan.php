@@ -42,6 +42,7 @@ class BarcodeScan extends Component
         );
 
         if( ($product->quantity - $quantity) < 0 ){
+            $this->error = 'Product Is Out of Stock!';
             if( $cartItem->quantity < 1 ){
                 $cartItem->delete();
             }

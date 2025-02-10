@@ -11,13 +11,18 @@ use Livewire\Attributes\On;
 class ProductSearch extends Component
 {
     public $query = '';
+    public $products = '';
+
+    public function mount()
+    {
+        $this->products = Product::where('name', 'like', '%' . $this->query . '%')->limit(10)->get();
+    }
 
     public function render()
     {
-        $products = Product::where('name', 'like', '%' . $this->query . '%')->limit(10)->get();
-        $currency_symbol = Setting::select('value')->where('key', 'currency_symbol')->first();
-        $currency_symbol = $currency_symbol ? $currency_symbol->value : '';
-        return view('livewire.product-search', compact('products', 'currency_symbol'));
+        $currency_symbol = config('settings.currency_symbol');
+    
+        return view('livewire.product-search', compact('currency_symbol'));
     }
 
     #[On('checkout-completed')]
@@ -25,7 +30,10 @@ class ProductSearch extends Component
         $this->query = '';
     }
 
-
+    #[On('cartUpdated')]
+    public function updateCart()
+    { 
+    }
 
     public function addToCart( $product_id, $quantity = 1 ){
 

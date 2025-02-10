@@ -25,13 +25,13 @@ class Cart extends Component
         $this->cartItems = OrderItem::where('order_id', $orderId)            
                             ->orderBy('id', 'DESC')
                             ->get();    
-        $currency_symbol = Setting::select('value')->where('key', 'currency_symbol')->first();
-        $this->currency_symbol = $currency_symbol ? $currency_symbol->value : '';
+        $this->currency_symbol = config('settings.currency_symbol');
     }
 
     
     public function render()
     {
+        $this->currency_symbol = config('settings.currency_symbol');
         return view('livewire.order.cart', ['cartItems' => $this->cartItems, 'currency_symbol' => $this->currency_symbol]);
     }
 
@@ -39,8 +39,6 @@ class Cart extends Component
     #[On('cartUpdated')]
     public function updateCart()
     {
-        $currency_symbol       = Setting::select('value')->where('key', 'currency_symbol')->first();
-        $this->currency_symbol = $currency_symbol ? $currency_symbol->value : '';
         $this->cartItems = OrderItem::where('order_id', $this->orderId)            
                                         ->orderBy('id', 'DESC')
                                         ->get();

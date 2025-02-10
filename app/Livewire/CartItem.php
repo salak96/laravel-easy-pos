@@ -35,12 +35,12 @@ class CartItem extends Component
     public function updated(){
         if ($this->quantity > 0) {
             $product = Product::find( $this->cartItem->product_id );
-            if( $product->quantity <  $this->quantity ){
-                $this->quantity = $this->cartItem->quantity;
-                return view('livewire.cart-item');
+            if( $product->quantity <  $this->quantity ){  
+                $this->quantity = $product->quantity;
             }
             $this->cartItem->quantity = $this->quantity;
             $this->cartItem->save();
+            $this->dispatch('cartUpdated');
         } 
     }
 

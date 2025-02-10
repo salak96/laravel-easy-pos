@@ -46,10 +46,9 @@ class CartItem extends Component
         if ($this->quantity > 0) {
             $product = Product::find( $this->cartItem->product_id );
             if( $product->quantity <  $this->quantity ){
-                $this->quantity = $this->cartItem->quantity;
-                return;
+                $this->quantity = $product->quantity;
             }
-
+            $this->cartItem->quantity = $this->quantity;
             $product->quantity = $product->quantity + $this->cartItem->quantity;
             $product->save();  
 

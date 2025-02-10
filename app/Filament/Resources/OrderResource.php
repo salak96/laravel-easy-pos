@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
+use App\Models\Setting;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -34,16 +35,18 @@ class OrderResource extends Resource
 
     public static function table(Table $table): Table
     {
+        $currency_symbol = config('settings.currency_symbol');
+
         return $table
             ->columns([
                 TextColumn::make('id')->label('ID')->sortable(),
                 TextColumn::make('customer.first_name')
                             ->label('Customer Name')
-                            ->sortable()
                             ->searchable()
                             ->formatStateUsing(fn ($record) => $record->customer->first_name . ' ' . $record->customer->last_name),
-                TextColumn::make('total_price'),
-                TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('total_price')
+                            ->formatStateUsing(fn ($record) => $currency_symbol.$record->total_price)->sortable(),
+                TextColumn::make('created_at')->sortable()->dateTime(),
             ])
             ->defaultSort('id', 'desc')
             ->filters([
@@ -95,6 +98,7 @@ class OrderResource extends Resource
             //
         ];
     }
+
 
     public static function getPages(): array
     {
