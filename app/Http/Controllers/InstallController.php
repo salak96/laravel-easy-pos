@@ -17,6 +17,11 @@ class InstallController extends Controller
 
         try {
 
+            Artisan::call('cache:clear');
+            Artisan::call('config:clear');
+            Artisan::call('route:clear');
+            Artisan::call('view:clear');
+
             Artisan::call('migrate', ['--force' => true]);
             echo "✅ Migrations completed.\n";
 
