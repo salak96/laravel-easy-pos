@@ -12,7 +12,7 @@ class InstallController extends Controller
     public function install()
     {
         if (Schema::hasTable('settings')) {
-            return;
+            return redirect( url('admin') );
         }
 
         try {
@@ -21,6 +21,7 @@ class InstallController extends Controller
             Artisan::call('config:clear');
             Artisan::call('route:clear');
             Artisan::call('view:clear');
+            Artisan::call('optimize');
 
             Artisan::call('migrate', ['--force' => true]);
             echo "✅ Migrations completed.\n";

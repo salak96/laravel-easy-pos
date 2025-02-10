@@ -22,7 +22,7 @@ class SettingsServiceProvider extends ServiceProvider
     public function boot(): void
     { 
         if (!Schema::hasTable('settings')) {
-            return;
+            return redirect( url('admin') );
         }
         $settings = Setting::pluck('value', 'key')->toArray();
         config()->set('settings', $settings);
