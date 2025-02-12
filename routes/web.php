@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,7 @@ Route::get('/', function () {
 
 
 Route::get('/install',  [InstallController::class, 'install']);
+Route::get('/print/{id}',  [UtilityController::class, 'print']);
+Route::get('/login',  function(){
+    return redirect( url('/admin') );
+})->name('login');
