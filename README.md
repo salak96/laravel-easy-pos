@@ -1,4 +1,4 @@
-<p align="center"><a href="#logo"><img src="https://raw.githubusercontent.com/arshidkv12/laravel-easy-pos/main/easy-pos-logo.svg" width="400" alt="Laravel POS Logo"></a></p>
+<p align="center"><a href="#logo"><img src="https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/easy-pos-logo.svg" width="400" alt="Laravel POS Logo"></a></p>
 
 A simple, open-source **Point of Sale (POS) system** built with Laravel and FilamentPHP.
 
@@ -22,7 +22,14 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 
 ### **POS Interface**  
-![POS Interface](https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/laravel-easy-pos.png)  
+![POS Interface](https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/public/img/laravel-easy-pos.png)  
+
+
+### **Invoice**  
+
+It supports thermal printing.
+
+![POS Invoice](https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/public/img/invoice.png)  
 
 
 ## Installation Guide 🏗️
