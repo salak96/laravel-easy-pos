@@ -28,3 +28,10 @@ Route::get('/login',  function(){
     return redirect( url('/admin') );
 })->name('login');
 
+Route::get('/clear',  function(){
+    Artisan::call('optimize:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+});
