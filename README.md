@@ -29,7 +29,9 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 It supports thermal printing.
 
-![POS Invoice](https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/public/img/invoice.png)  
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/public/img/invoice.png" alt="POS Invoice">
+</p> 
 
 
 ## Installation Guide 🏗️
