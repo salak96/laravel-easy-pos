@@ -35,6 +35,8 @@ class UtilityController extends Controller
             'site_description' => $site_description
         ];
 
+        dd($data);
+
         $html = view('invoices.3-invoice', $data)->render();
 
         $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();

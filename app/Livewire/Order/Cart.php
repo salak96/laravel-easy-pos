@@ -42,6 +42,16 @@ class Cart extends Component
         $this->cartItems = OrderItem::where('order_id', $this->orderId)            
                                         ->orderBy('id', 'DESC')
                                         ->get();
+
+        $order = Order::find($this->orderId);
+        
+        $total_price = 0;
+        foreach($this->cartItems as $item){ 
+            $total_price += $item->quantity * $item->product->price;
+        }
+        $order->total_price = $total_price;
+        $order->save();
+
     }
 
 
@@ -51,6 +61,16 @@ class Cart extends Component
         $this->cartItems = OrderItem::where('order_id', $this->orderId)            
                                         ->orderBy('id', 'DESC')
                                         ->get();
+
+        $order = Order::find($this->orderId);
+
+        $total_price = 0;
+        foreach($this->cartItems as $item){ 
+            $total_price += $item->quantity * $item->product->price;
+        }
+        $order->total_price = $total_price;
+        $order->save();
+                                
     }
 
 
