@@ -63,20 +63,23 @@ class Cart extends Component
         
         $total_price = 0;
         $customerId =  session('customer_id');
-        if( empty($customerId) ){
 
+        if( empty($customerId) ){
             return $this->dispatch('error', error: 'Please select customer!');
         }
+
+        $items = $this->cartItems;
+
+        if( ! is_countable( $items ) || count( $items ) < 1){
+            return;
+        }
+
         $order = Order::create([
             'customer_id' => $customerId,
             'total_price' => $total_price
         ]);
 
-        $items = $this->cartItems;
-
-        if( ! is_countable( $items ) ){
-            return;
-        }
+        
 
         foreach ($items as $item) {  
             $product = Product::find( $item->product_id );

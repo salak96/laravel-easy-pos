@@ -31,5 +31,8 @@
             </tbody>
         </table>
     </div>
-    <button wire:click="checkout" class="bg-green-500 rounded  text-white px-4 py-2 mt-3">Save</button>
+    <button wire:click="checkout" wire:loading.attr="disabled"  class="bg-green-500 rounded  text-white px-4 py-2 mt-3">
+        <span wire:loading.remove wire:target='checkout'>Save</span>
+        <span wire:loading wire:target='checkout' class="w-4 h-4 border-2 border-t-red-100 border-transparent rounded-full animate-spin"></span>
+    </button>
 </div>
