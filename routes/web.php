@@ -3,6 +3,7 @@
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::get('/print/{id}',  [UtilityController::class, 'print']);
 Route::get('/login',  function(){
     return redirect( url('/admin') );
 })->name('login');
+
