@@ -95,10 +95,13 @@
     <table>
         <thead>
             <tr>
-                <th class="border-b-d">Product</th>
-                <th class="border-b-d tex-center">Rate</th>
-                <th class="border-b-d tex-center p-x-1">QTY</th>
-                <th class="border-b-d tex-center">Amount</th>
+                <th>Product</th>
+                <th class="tex-center">Rate</th>
+                <th class="tex-center p-x-1">QTY</th>
+                <th class="tex-center">Amount</th>
+            </tr>
+            <tr>
+                <th class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
             </tr>
         </thead>
         <tbody>
@@ -109,20 +112,27 @@
                     <td  class="pb-1" style="font-size:13px" colspan="4">{{ $i.'.'.$item->product->name}}</td>
                 </tr>
                 <tr>
-                    <td class="pt-0 border-b-d">&nbsp;&nbsp;</td>
-                    <td class="tex-center pt-0 border-b-d">{{ number_format($item['price'], 2, '.', '')  }}</td>
-                    <td class="tex-center pt-0 border-b-d">{{ $item['quantity'] }}</td>
-                    <td class="tex-center pt-0 border-b-d">{{ number_format( ($item['price'] *  $item['quantity']), 2, '.', '')  }}</td>
+                    <td class="pt-0">&nbsp;&nbsp;</td>
+                    <td class="tex-center pt-0">{{ number_format($item['price'], 2, '.', '')  }}</td>
+                    <td class="tex-center pt-0">{{ $item['quantity'] }}</td>
+                    <td class="tex-center pt-0">{{ number_format( ($item['price'] *  $item['quantity']), 2, '.', '')  }}</td>
+                </tr>
+                <tr>
+                    <td class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
                 </tr>
             @endforeach
             <tr>
-                <td colspan="3" class="border-b-d" style="font-size:16px">
+                <td colspan="3" style="font-size:16px">
                     Total 
                 </td>
-                <td class="border-b-d" style="text-align: center; font-size:16px">
+                <td style="text-align: center; font-size:16px">
                     {{$currency_symbol}}{{$order->total_price}}
                 </td>
             </tr>
+            <tr>
+                <td class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
+            </tr>
+            
         </tbody>
     </table>
 
