@@ -89,6 +89,7 @@
         <h2>INVOICE</h2>
         <p>Invoice Number: #{{ str_pad($invoiceNumber, 6, '0', STR_PAD_LEFT) }}</p>
         <p>Date: {{ $date }}</p>
+        <p>Time: {{ $time }}</p>
     </div>
 
     <table>

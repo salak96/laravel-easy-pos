@@ -26,7 +26,8 @@ class UtilityController extends Controller
 
         $data = [
             'invoiceNumber' => $order->id,
-            'date' => $order->created_at->format('M d, Y h:i:s A'),
+            'date' => $order->created_at->format('M d, Y'),
+            'time' => $order->created_at->format('h:i:s A'),
             'items' => $order->items,
             'order' => $order,
             'currency_symbol' => $currency_symbol,
