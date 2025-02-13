@@ -18,6 +18,7 @@ class ListOrders extends ListRecords
 
     protected function getHeaderActions(): array
     {
+
         return [
             Actions\CreateAction::make(),
             ExportAction::make() 
@@ -25,7 +26,7 @@ class ListOrders extends ListRecords
                 ExcelExport::make()
                     ->fromTable()
                     ->withFilename(fn ($resource) => $resource::getModelLabel() . '-' . date('Y-m-d'))
-                    ->withWriterType(\Maatwebsite\Excel\Excel::XLSX)
+                    ->withWriterType(\Maatwebsite\Excel\Excel::CSV)
                     ->withColumns([
                         Column::make('customer.phone')->heading('Mobile'),
                         Column::make('customer.email')->heading('Email'),

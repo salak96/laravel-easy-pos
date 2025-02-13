@@ -16,10 +16,14 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         Schema::defaultStringLength(191);
+        
         FilamentAsset::register([
             Css::make('filament-print', asset('css/print.min.css')),
             Js::make('filament-print-js', asset('js/print.min.js'))
         ]);
+
+        config()->set('excel.exports.csv.delimiter', ';');
+
     }
 
     /**

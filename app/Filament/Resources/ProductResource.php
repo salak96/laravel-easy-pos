@@ -20,7 +20,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextInputColumn;
-
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Columns\Column;
 
 class ProductResource extends Resource
 {
@@ -91,6 +93,17 @@ class ProductResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()->exports([
+                    ExcelExport::make()
+                        ->withFilename(fn ($resource) => $resource::getModelLabel() . '-' . date('Y-m-d'))
+                        ->withWriterType(\Maatwebsite\Excel\Excel::CSV)
+                        ->withColumns([
+                            Column::make('name')->heading('Name'),
+                            Column::make('barcode')->heading('Barcode'),
+                            Column::make('price')->heading('Price'),
+                            Column::make('quantity')->heading('Quantity'),
+                        ])
+                ])
             ]);
     }
 
