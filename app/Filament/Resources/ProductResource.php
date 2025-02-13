@@ -65,21 +65,20 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('name')
+                                ->width(250)
+                                ->wrap()
+                                ->sortable()
+                                ->searchable(),
                 ImageColumn::make('image')->disk('public_uploads')  
                                 ->size(50)  
                                 ->square(),
                 TextColumn::make('barcode')->sortable()->searchable(),
                 TextInputColumn::make('quantity')->type('number')  
-                                ->sortable()   
-                                ->width(50)
+                                ->sortable() 
+                                ->width(10)
                                 ->rules(['required', 'integer', 'min:1']),
-                TextColumn::make('price')->sortable(),
-                IconColumn::make('status')
-                    ->boolean()
-                    ->trueIcon('heroicon-o-check-circle')  
-                    ->falseIcon('heroicon-o-x-circle')  
-                    ->tooltip(fn ($record) => $record->status ? 'Active' : 'Inactive'),               
+                TextColumn::make('price')->sortable(),              
                  TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([

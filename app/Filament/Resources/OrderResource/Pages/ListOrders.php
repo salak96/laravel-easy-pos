@@ -25,7 +25,7 @@ class ListOrders extends ListRecords
                 ExcelExport::make()
                     ->fromTable()
                     ->withFilename(fn ($resource) => $resource::getModelLabel() . '-' . date('Y-m-d'))
-                    ->withWriterType(\Maatwebsite\Excel\Excel::CSV)
+                    ->withWriterType(\Maatwebsite\Excel\Excel::XLSX)
                     ->withColumns([
                         Column::make('customer.phone')->heading('Mobile'),
                         Column::make('customer.email')->heading('Email'),
