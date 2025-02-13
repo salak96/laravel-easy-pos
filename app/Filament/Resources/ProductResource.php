@@ -50,9 +50,12 @@ class ProductResource extends Resource
                         ->minValue(0)
                         ->default(1)
                         ->required(),
-                    Textarea::make('description')
-                        ->maxLength(500)
-                        ->nullable(),
+                    TextInput::make('tax')
+                        ->label('Tax (%)')
+                        ->suffixIcon('heroicon-o-information-circle')  
+                        ->helperText('Example: 5 for 5% VAT/GST.')
+                        ->numeric()
+                        ->default(0.00),
                     FileUpload::make('image')
                         ->disk('public_uploads') 
                         ->panelLayout('grid') 
@@ -75,13 +78,13 @@ class ProductResource extends Resource
                 ImageColumn::make('image')->disk('public_uploads')  
                                 ->size(50)  
                                 ->square(),
-                TextColumn::make('barcode')->sortable()->searchable(),
+                TextColumn::make('barcode')->searchable(),
                 TextInputColumn::make('quantity')->type('number')  
                                 ->sortable() 
                                 ->width(10)
                                 ->rules(['required', 'integer', 'min:1']),
                 TextColumn::make('price')->sortable(),              
-                 TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->filters([
                 //
@@ -101,6 +104,7 @@ class ProductResource extends Resource
                             Column::make('name')->heading('Name'),
                             Column::make('barcode')->heading('Barcode'),
                             Column::make('price')->heading('Price'),
+                            Column::make('tax')->heading('Tax'),
                             Column::make('quantity')->heading('Quantity'),
                         ])
                 ])

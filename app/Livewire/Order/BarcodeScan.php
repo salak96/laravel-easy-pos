@@ -42,8 +42,14 @@ class BarcodeScan extends Component
         }
 
         $cartItem  = OrderItem::firstOrCreate(
-            ['order_id' => $this->orderId, 'product_id' => $product->id],  
-            ['quantity' => 0, 'price' => $product->price] 
+            [
+                'order_id' => $this->orderId, 'product_id' => $product->id
+            ],[
+                'name' => $product->name, 
+                'quantity' => 0, 
+                'price' => $product->price, 
+                'tax' => $product->tax,
+            ]  
         );
 
         if( ($product->quantity - $quantity) < 0 ){

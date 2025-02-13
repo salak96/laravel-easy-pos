@@ -41,11 +41,18 @@ class ProductSearch extends Component
 
     public function addToCart( $product_id, $quantity = 1 ){
 
-        $product = Product::find( $product_id );
-        $user_id = auth()->user()->id;
+        $product  = Product::find( $product_id );
+        $user_id  = auth()->user()->id;
         $cartItem = Cart::firstOrCreate(
-            ['user_id' => $user_id, 'product_id' => $product_id],  
-            ['quantity' => 0] 
+            [
+                'user_id' => $user_id, 'product_id' => $product_id
+            ],  
+            [
+                'quantity' => 0, 
+                'name' => $product->name, 
+                'price' => $product->price,
+                'tax' => $product->tax
+            ] 
         );
 
         if( $product->quantity < ($cartItem->quantity + $quantity) ){

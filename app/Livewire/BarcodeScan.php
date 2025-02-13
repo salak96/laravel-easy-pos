@@ -33,11 +33,20 @@ class BarcodeScan extends Component
             $this->query = '';
             return;
         }
-        $user_id = auth()->user()->id;
+        $user_id  = auth()->user()->id;
         $cartItem = Cart::firstOrCreate(
-            ['user_id' => $user_id, 'product_id' => $product->id],  
-            ['quantity' => 0] 
+            [
+                'user_id' => $user_id, 'product_id' => $product->id
+            ],  
+            [  
+                'name' => $product->name, 
+                'quantity' => 0, 
+                'price' => $product->price,
+                'tax' => $product->tax
+            ] 
         );
+
+        
 
         if( $product->quantity < ($cartItem->quantity + $quantity) ){
             $this->error = 'Product Is Out of Stock!';

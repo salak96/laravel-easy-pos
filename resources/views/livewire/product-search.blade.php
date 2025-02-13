@@ -4,10 +4,10 @@
         <input wire:model.live.debounce.250ms="query" type="search" id="default-search" class="bg-white block w-full text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search product..." />
     </div>
     <div class="mt-4">
-        <div class="grid grid-cols-2 lg:grid-cols-3 gap-2">
-            @php $counter = 0; @endphp
+        <div class="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-2">
+            @php $counter = 0; @endphp 
             @foreach ($products as $product)
-            <div wire:click="addToCart({{$product->id}})" class="relative bg-white border border-gray-300 rounded overflow-hidden {{ $counter > 1 ? 'hidden md:block' : '' }}">
+            <div wire:click="addToCart({{$product->id}})" class="relative bg-white border border-gray-300 rounded overflow-hidden {{ $counter > 1 ? 'hidden lg:block' : '' }}">
                 
                 <div wire:loading wire:target="addToCart({{ $product->id }})"  class="bg-gray-200 bg-opacity-80 absolute p-2 w-full h-full text-red-500" >
                     <svg class="absolute h-12 w-12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" viewBox="0 0 120 30" fill="currentColor">

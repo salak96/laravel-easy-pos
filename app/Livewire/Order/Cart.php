@@ -47,7 +47,7 @@ class Cart extends Component
         
         $total_price = 0;
         foreach($this->cartItems as $item){ 
-            $total_price += $item->quantity * $item->product->price;
+            $total_price += $item->quantity * $item->price;
         }
         $order->total_price = $total_price;
         $order->save();
@@ -66,7 +66,7 @@ class Cart extends Component
 
         $total_price = 0;
         foreach($this->cartItems as $item){ 
-            $total_price += $item->quantity * $item->product->price;
+            $total_price += $item->quantity * $item->price;
         }
         $order->total_price = $total_price;
         $order->save();

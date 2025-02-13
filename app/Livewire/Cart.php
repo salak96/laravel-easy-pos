@@ -85,11 +85,13 @@ class Cart extends Component
             $product = Product::find( $item->product_id );
 
             $order->items()->create([
-                'price' => $product->price,
+                'name' => $item->name,
+                'price' => $item->price,
+                'tax' => $item->tax,
                 'quantity' => $item->quantity,
                 'product_id' => $item->product_id,
             ]);
-            $total_price += $item->quantity * $product->price;
+            $total_price += $item->quantity * $item->price;
             $product->quantity = $product->quantity - $item->quantity;
             $product->save();
         }
