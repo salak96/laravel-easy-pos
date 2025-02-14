@@ -11,8 +11,8 @@
             margin: 0;
             padding: 0;
         }
-        .tex-center{
-            text-align: center;
+        .text-right{
+            text-align: right;
         }
         table {
             width: 100%;
@@ -39,6 +39,9 @@
         .pt-0{
             padding-top: 0;
         }
+        .pb-0{
+            padding-bottom: 0;
+        }
         .font-bold{
             font-weight: bold;
         }
@@ -59,6 +62,9 @@
             font-size: 10px;
             margin-top: 10mm;
         }
+        .text-center{
+            text-align: center
+        }
         .border-b-d{
             border-bottom: 1px dashed #999;
         }
@@ -76,6 +82,9 @@
         table th{
             font-family: 'Courier New', Courier, monospace;
             font-size: 12px;
+        }
+        .mt-0{
+            margin-top: 0;
         }
     </style>
 </head>
@@ -105,7 +114,12 @@
             </tr>
         </thead>
         <tbody>
-            @php $i = 0; @endphp
+            @php 
+                $i = 0; 
+                $total_price = 0;
+                $total_tax = [];
+                $grand_total = 0;
+            @endphp
             @foreach($items as $item)
                 @php $i++; @endphp
                 <tr>
@@ -115,20 +129,58 @@
                     <td class="pt-0">VAT {{(int)$item['tax']}}%</td>
                     <td class="tex-center pt-0">{{ number_format($item['price'], 2, '.', '')  }}</td>
                     <td class="tex-center pt-0">{{ $item['quantity'] }}</td>
-                    <td class="tex-center pt-0">{{ number_format( ($item['price'] *  $item['quantity']), 2, '.', '')  }}</td>
+                    @php 
+                        $tax = $item['tax'];
+                        $item_total = $item->price * $item->quantity;
+                        $tax_amount = ($item_total * $tax) / 100;
+                        $item_total_with_tax = $item_total + $tax_amount;
+                        $total_price += $item_total;
+                        $total_tax[$tax] = ($total_tax[$tax] ?? 0) + $tax_amount;
+                        $grand_total += $item_total_with_tax;
+                    @endphp
+                    <td class="tex-center pt-0">{{ number_format( $item_total_with_tax , 2, '.', '')  }}</td>
                 </tr>
                 <tr>
                     <td class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
                 </tr>
             @endforeach
+
             <tr>
-                <td colspan="3" style="font-size:16px">
+                <td class="text-center " colspan="4" style="padding-top:3mm; padding-bottom:0; font-size:16px">
+                    INVOICE SUMMARY
+                </td>
+            </tr>
+
+            <tr>
+                <td class="mt-2" colspan="3" style="font-size:16px;">
                     Total 
                 </td>
-                <td style="text-align: center; font-size:16px">
+                <td class="pt-0" style="text-align: right; font-size:16px">
                     {{$currency_symbol}}{{$order->total_price}}
                 </td>
             </tr>
+
+            @foreach ($total_tax as $rate => $amount)
+                <tr>
+                    <td  colspan="3" style="font-size:16px; padding-top:0; padding-bottom:0">
+                        VAT/GST @ {{ $rate }}% 
+                    </td>
+                    <td class="pt-0 pb-0" class="text-right"  style=" padding-top:0; padding-bottom:0; font-size:16px">
+                        {{$rate}}
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td class="border-b-d" colspan="4" style="height: 0; padding:0; padding-top:2mm"></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="font-size:16px">
+                    Grand Total 
+                </td>
+                <td class="text-right" style=" font-size:16px">
+                    {{ $currency_symbol }}{{ number_format($grand_total, 2) }}
+                </td>
+            <tr>
             <tr>
                 <td class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
             </tr>
