@@ -163,7 +163,7 @@
             @foreach ($total_tax as $rate => $amount)
                 <tr>
                     <td  colspan="3" style="font-size:16px; padding-top:0; padding-bottom:0">
-                        VAT/GST @ {{ $rate }}% 
+                        VAT/GST @ {{ (int)$rate }}% 
                     </td>
                     <td class="pt-0 pb-0" class="text-right"  style=" padding-top:0; padding-bottom:0; font-size:16px">
                         {{$currency_symbol}}{{$amount}}
