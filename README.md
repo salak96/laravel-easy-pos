@@ -20,6 +20,8 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 **Password:** pass@123
 
+*Feel free to PM info@mailmug.net*
+
 
 ### **POS Interface**  
 ![POS Interface](https://raw.githubusercontent.com/mailmug/laravel-easy-pos/main/public/img/laravel-easy-pos.png)  
