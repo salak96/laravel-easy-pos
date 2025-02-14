@@ -109,10 +109,10 @@
             @foreach($items as $item)
                 @php $i++; @endphp
                 <tr>
-                    <td  class="pb-1" style="font-size:13px" colspan="4">{{ $i.'.'.$item->product->name}}</td>
+                    <td  class="pb-1" style="" colspan="4">{{ $i.'.'.$item->product->name}}</td>
                 </tr>
                 <tr>
-                    <td class="pt-0">&nbsp;&nbsp;</td>
+                    <td class="pt-0">VAT {{(int)$item['tax']}}%</td>
                     <td class="tex-center pt-0">{{ number_format($item['price'], 2, '.', '')  }}</td>
                     <td class="tex-center pt-0">{{ $item['quantity'] }}</td>
                     <td class="tex-center pt-0">{{ number_format( ($item['price'] *  $item['quantity']), 2, '.', '')  }}</td>
