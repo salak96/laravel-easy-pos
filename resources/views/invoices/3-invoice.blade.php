@@ -166,7 +166,7 @@
                         VAT/GST @ {{ $rate }}% 
                     </td>
                     <td class="pt-0 pb-0" class="text-right"  style=" padding-top:0; padding-bottom:0; font-size:16px">
-                        {{$rate}}
+                        {{$currency_symbol}}{{$amount}}
                     </td>
                 </tr>
             @endforeach
