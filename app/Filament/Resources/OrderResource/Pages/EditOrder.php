@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\OrderResource\Pages;
 
 use App\Filament\Resources\OrderResource;
+use App\Models\Order;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -19,7 +20,7 @@ class EditOrder extends EditRecord
             Actions\Action::make('print')
                 ->label('Print')
                 ->livewireClickHandlerEnabled(false)
-                ->extraAttributes(fn($record) => [
+                ->extraAttributes(fn(Order $record) => [
                     'x-on:click' => new \Illuminate\Support\HtmlString("printJS({ printable:'" . url('print/'.$record->id) . "', type: 'pdf' })")
                 ])
                 ->icon('heroicon-o-printer')

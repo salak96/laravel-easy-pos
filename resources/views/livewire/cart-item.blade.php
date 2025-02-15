@@ -1,7 +1,7 @@
 <tr class="odd:bg-white even:bg-gray-100">
     @if($cartItem)
     <td class="px-2 py-1 border-r dark:text-gray-800 whitespace-normal break-words">{{ $cartItem->name }}</td>
-    <td class="px-2 py-1 border-r text-center dark:text-gray-800">{{ $cartItem->price }}</td>
+    <td class="px-2 py-1 border-r text-center dark:text-gray-800">{{ number_format($cartItem->price, 2) }}</td>
     <td class="px-2 py-1 border-r text-center dark:text-gray-800">{{ $cartItem->tax }}</td>
     <td class="px-2 py-1 border-r text-center dark:text-gray-800">
         <div class="flex items-center gap-1 dark:text-gray-800 w-32">
