@@ -21,6 +21,7 @@ class EditOrder extends EditRecord
                 ->label('Print')
                 ->livewireClickHandlerEnabled(false)
                 ->extraAttributes(fn(Order $record) => [
+                    'class' => 'md:flex hidden',
                     'x-on:click' => new \Illuminate\Support\HtmlString("printJS({ printable:'" . url('print/'.$record->id) . "', type: 'pdf' })")
                 ])
                 ->icon('heroicon-o-printer')
