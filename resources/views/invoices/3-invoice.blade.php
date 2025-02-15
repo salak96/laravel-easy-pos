@@ -76,8 +76,12 @@
             font-size: 14px;
         }
         .p-x-1{
-            padding-left: 1mm,
+            padding-left: 1mm;
             padding-right:1mm;
+        }
+        .p-x-2{
+            padding-left: 2mm;
+            padding-right:2mm;
         }
         table th{
             font-family: 'Courier New', Courier, monospace;
@@ -105,9 +109,9 @@
         <thead>
             <tr>
                 <th>Product</th>
-                <th class="tex-center">Rate</th>
-                <th class="tex-center p-x-1">QTY</th>
-                <th class="tex-center">Amount</th>
+                <th class="text-center">Rate</th>
+                <th class="text-center p-x-1">QTY</th>
+                <th class="text-right">Amount</th>
             </tr>
             <tr>
                 <th class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
@@ -127,8 +131,8 @@
                 </tr>
                 <tr>
                     <td class="pt-0">VAT {{(int)$item['tax']}}%</td>
-                    <td class="tex-center pt-0">{{ number_format($item['price'], 2, '.', '')  }}</td>
-                    <td class="tex-center pt-0">{{ $item['quantity'] }}</td>
+                    <td class="text-center pt-0">{{ number_format($item['price'], 2, '.', '')  }}</td>
+                    <td class="text-center pt-0">{{ $item['quantity'] }}</td>
                     @php 
                         $tax = $item['tax'];
                         $item_total = $item->price * $item->quantity;
@@ -138,7 +142,7 @@
                         $total_tax[$tax] = ($total_tax[$tax] ?? 0) + $tax_amount;
                         $grand_total += $item_total_with_tax;
                     @endphp
-                    <td class="tex-center pt-0">{{ number_format( $item_total_with_tax , 2, '.', '')  }}</td>
+                    <td class="text-right pt-0" style="">{{ number_format( $item_total_with_tax , 2, '.', '')  }}</td>
                 </tr>
                 <tr>
                     <td class="border-b-d" colspan="4" style="height: 0; padding:0;"></td>
