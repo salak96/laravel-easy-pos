@@ -160,7 +160,7 @@
                     Total 
                 </td>
                 <td class="pt-0" style="text-align: right; font-size:16px">
-                    {{$currency_symbol}}{{$order->total_price}}
+                    {{$order->total_price}}
                 </td>
             </tr>
 
@@ -170,7 +170,7 @@
                         VAT/GST @ {{ (int)$rate }}% 
                     </td>
                     <td class="pt-0 pb-0" class="text-right"  style=" padding-top:0; padding-bottom:0; font-size:16px">
-                        {{$currency_symbol}}{{$amount}}
+                        {{$amount}}
                     </td>
                 </tr>
             @endforeach
@@ -182,7 +182,7 @@
                     Grand Total 
                 </td>
                 <td class="text-right" style=" font-size:16px">
-                    {{ $currency_symbol }}{{ number_format($grand_total, 2) }}
+                    {{ number_format($grand_total, 2) }}
                 </td>
             <tr>
             <tr>
