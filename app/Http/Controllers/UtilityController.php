@@ -64,6 +64,6 @@ class UtilityController extends Controller
         ]);
 
         $mpdf->WriteHTML($html);
-        return $mpdf->Output();
+        return $mpdf->Output('invoice-'.$order_id.'.pdf', 'I');
     }
 }
