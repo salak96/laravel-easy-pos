@@ -59,7 +59,7 @@ class CartItem extends Component
             $product->quantity = $product->quantity - $this->quantity;
             $product->save();
         } 
-        if ($this->quantity < 0){
+        if ( is_numeric($this->quantity) && $this->quantity <= 0){
             $this->quantity = 1;
         }
         $this->dispatch('cartUpdatedFromItem');
