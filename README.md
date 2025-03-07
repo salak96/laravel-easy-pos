@@ -20,7 +20,24 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 **Password:** pass@123
 
-*Feel free to PM info@mailmug.net*
+
+
+## Laravel Easy POS – Installation & Custom Invoice Template Service
+
+We offer a hassle-free installation service for Laravel Easy POS for just $29. Need a custom invoice template? We can design one for an additional price!
+
+✅ Services Offered:
+
+- Installation & Setup – $29
+- Custom Invoice Template – Additional cost (contact us for pricing)
+- Configuration assistance & basic troubleshooting
+
+* 📩 Contact Us:
+* ✉️ Email: info@mailmug.net
+* 💬 Discord: arshidkv12
+* 🌐 Website: [wpdebuglog.com/contact/](https://wpdebuglog.com/contact/)
+
+Get in touch today, and let us handle the setup for you! 🚀
 
 
 ### **POS Interface**  
@@ -39,12 +56,12 @@ It supports thermal printing.
 ## Installation Guide 🏗️
 
 ### Web Install
-1. Download zip file 
+1. Download the zip file 
 https://filament-pos.phpbolt.com/laravel-easy-pos.zip
 
-2. Upload file to **public_html** folder.
+2. Upload the file to **public_html** folder.
 
-Point domain name to public_html/public folder.
+Point the domain name to public_html/public folder.
 
 3. Navigate your-domain.com/install
 
