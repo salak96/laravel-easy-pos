@@ -22,7 +22,7 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 
 
-## Laravel Easy POS – Installation Service
+## Installation & Custom Invoice Template Service
 
 We offer a hassle-free installation service for Laravel Easy POS for just **$29**. 
 Need a custom invoice template? We can design one for an additional price!
