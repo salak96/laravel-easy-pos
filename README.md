@@ -16,9 +16,9 @@ A simple, open-source **Point of Sale (POS) system** built with Laravel and Fila
 
 **Live Demo** : https://filament-pos.phpbolt.com/
 
-**Username:** admin@admin.com
+**Username:** admin@gmail.com
 
-**Password:** pass@123
+**Password:** password
 
 
 
