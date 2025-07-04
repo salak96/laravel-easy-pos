@@ -14,7 +14,7 @@ class Pos extends Page
 
     protected static string $view = 'filament.pages.pos';
 
-    protected static ?string $navigationLabel = 'Point Of Sale';
+    protected static ?string $navigationLabel = 'Transaksi';
 
 
     public function getTitle(): string

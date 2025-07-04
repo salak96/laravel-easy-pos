@@ -59,12 +59,16 @@ class CustomerResource extends Resource
                 TextColumn::make('first_name')->sortable()->searchable(),
                 TextColumn::make('last_name')->searchable(),
                 TextColumn::make('email')->searchable(),
+                 Tables\Columns\ImageColumn::make('avatar')
+                    ->circular()
+                    ->size(50),
                 TextColumn::make('phone')->searchable(),
                 TextColumn::make('orders_count')
                             ->label('Orders')
                             ->counts('orders')  
                             ->sortable(),                
                 TextColumn::make('created_at')->sortable()->dateTime(),
+                
             ])
             ->filters([])
             ->actions([

@@ -14,12 +14,11 @@ class SettingsSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            ['key' => 'currency_symbol', 'value' => '$'],
-            ['key' => 'site_description', 'value' => 'This is an awesome site!'],
+            ['key' => 'currency_symbol', 'value' => 'Rp'],
+            ['key' => 'site_description', 'value' => 'Alamat: 7HJM+9V5, Bendogantungan, Sumberejo, Kec. Klaten Sel., Kabupaten Klaten, Jawa Tengah 57426'],
             ['key' => 'site_email', 'value' => 'admin@example.com'],
-            ['key' => 'site_name', 'value' => 'My Laravel App'],
+            ['key' => 'site_name', 'value' => 'Pecel Lele LENTERA']
         ];
-
         foreach ($settings as $setting) {
             Setting::updateOrCreate(['key' => $setting['key']], ['value' => $setting['value']]);
         }

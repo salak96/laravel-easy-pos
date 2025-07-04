@@ -3,30 +3,67 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
 class ProductSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $faker = Faker::create();
+        $products = [
+            [
+                'name' => 'Pecel Lele',
+                'description' => 'Lele goreng dengan sambal pecel dan lalapan segar.',
+                'image' => 'pecel-lele.jpg',
+                'quantity' => 30,
+                'barcode' => '8991234567001',
+                'regular_price' => 18000,
+                'price' => 15000,
+                'status' => true,
+            ],
+            [
+                'name' => 'Pecel Ayam',
+                'description' => 'Ayam goreng disajikan dengan sambal pecel khas Jawa Timur.',
+                'image' => 'pecel-ayam.jpg',
+                'quantity' => 25,
+                'barcode' => '8991234567002',
+                'regular_price' => 19000,
+                'price' => 16000,
+                'status' => true,
+            ],
+            [
+                'name' => 'Nasi Pecel',
+                'description' => 'Sayuran rebus disiram sambal kacang, disajikan dengan nasi.',
+                'image' => 'nasi-pecel.jpg',
+                'quantity' => 40,
+                'barcode' => '8991234567003',
+                'regular_price' => 15000,
+                'price' => 13000,
+                'status' => true,
+            ],
+            [
+                'name' => 'Pecel Tempe Tahu',
+                'description' => 'Tempe dan tahu goreng dengan sambal pecel pedas.',
+                'image' => 'pecel-tempe-tahu.jpg',
+                'quantity' => 35,
+                'barcode' => '8991234567004',
+                'regular_price' => 17000,
+                'price' => 14000,
+                'status' => true,
+            ],
+            [
+                'name' => 'Pecel Komplit',
+                'description' => 'Pecel lengkap dengan ayam, tempe, tahu, dan kerupuk.',
+                'image' => 'pecel-komplit.jpg',
+                'quantity' => 20,
+                'barcode' => '8991234567005',
+                'regular_price' => 22000,
+                'price' => 20000,
+                'status' => true,
+            ],
+        ];
 
-        for ($i = 0; $i < 5; $i++) {
-            Product::create([
-                'name' => ucwords($faker->word),
-                'description' => $faker->sentence,
-                'image' => '',
-                'quantity' => 50,
-                'barcode' => $faker->unique()->ean13,  
-                'regular_price' => $faker->randomFloat(2, 50, 200),
-                'price' => $faker->randomFloat(2, 40, 190),
-                'status' => true
-            ]);
+        foreach ($products as $data) {
+            Product::create($data);
         }
     }
 }

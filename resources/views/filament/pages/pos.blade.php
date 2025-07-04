@@ -8,9 +8,7 @@
 
         <div class="w-full md:w-2/3 md:order-1">
             <div class="flex flex-col md:flex-row gap-4 pb-4">
-                <div class="w-full md:w-1/2">
-                    <livewire:barcode-scan />
-                </div>
+                <h1 class="w-full text-white">Nama Customer</h1>
                 <div class="w-full md:w-1/2">
                     <livewire:customer-search />
                 </div>

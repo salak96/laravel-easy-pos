@@ -3,19 +3,19 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\On; 
 
 class Error extends Component
 {
-    public $error = '';
+    public $error;
+
+    // Jadikan parameter opsional
+    public function mount($error = null)
+    {
+        $this->error = $error;
+    }
 
     public function render()
     {
         return view('livewire.error');
     }
-
-    #[On('error')]
-    public function error( $error ){
-        $this->error = $error;
-    }
-}   
+}

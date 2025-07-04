@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,14 +10,12 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
@@ -36,33 +33,47 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                    TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
-                    TextInput::make('barcode')
-                        ->required()
-                        ->unique(Product::class, 'barcode', ignoreRecord: true),
-                    TextInput::make('price')
-                        ->numeric()
-                        ->required(),
-                    TextInput::make('quantity')
-                        ->numeric()
-                        ->minValue(0)
-                        ->default(1)
-                        ->required(),
-                    TextInput::make('tax')
-                        ->label('Tax (%)')
-                        ->suffixIcon('heroicon-o-information-circle')  
-                        ->helperText('Example: 5 for 5% VAT/GST.')
-                        ->numeric()
-                        ->default(0.00),
-                    FileUpload::make('image')
-                        ->disk('public_uploads') 
-                        ->panelLayout('grid') 
-                        ->visibility('public'),
-                    Toggle::make('status')
-                        ->label('Active')
-                        ->default(true)
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                TextInput::make('barcode')
+                    ->required()
+                    ->unique(Product::class, 'barcode', ignoreRecord: true),
+
+                TextInput::make('price')
+                    ->label('Harga')
+                    ->numeric()
+                    ->required()
+                    ->minValue(0)
+                    ->default(0)
+                    ->prefix('Rp'), // Untuk tampilan input
+
+                TextInput::make('quantity')
+                    ->numeric()
+                    ->minValue(0)
+                    ->default(1)
+                    ->required(),
+
+                TextInput::make('tax')
+                    ->label('Pajak (%)')
+                    ->suffixIcon('heroicon-o-information-circle')
+                    ->helperText('Contoh: 5 untuk 5% PPN.')
+                    ->numeric()
+                    ->default(0.00),
+
+                Textarea::make('description')
+                    ->maxLength(65535)
+                    ->nullable(),
+
+                FileUpload::make('image')
+                    ->disk('public_uploads')
+                    ->panelLayout('grid')
+                    ->visibility('public'),
+
+                Toggle::make('status')
+                    ->label('Aktif')
+                    ->default(true),
             ]);
     }
 
@@ -71,20 +82,33 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                                ->width(250)
-                                ->wrap()
-                                ->sortable()
-                                ->searchable(),
-                ImageColumn::make('image')->disk('public_uploads')  
-                                ->size(50)  
-                                ->square(),
-                TextColumn::make('barcode')->searchable(),
-                TextInputColumn::make('quantity')->type('number')  
-                                ->sortable() 
-                                ->width(10)
-                                ->rules(['required', 'integer', 'min:1']),
-                TextColumn::make('price')->sortable(),              
-                TextColumn::make('created_at')->dateTime()->sortable(),
+                    ->label('Nama Produk')
+                    ->sortable()
+                    ->searchable()
+                    ->wrap()
+                    ->width(250),
+
+                ImageColumn::make('image')
+                    ->disk('public_uploads')
+                    ->size(50)
+                    ->square(),
+
+                TextColumn::make('barcode')
+                    ->searchable(),
+
+                TextInputColumn::make('quantity')
+                    ->type('number')
+                    ->sortable()
+                    ->rules(['required', 'integer', 'min:1']),
+
+                TextColumn::make('price')
+                    ->label('Harga')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
+
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -107,15 +131,13 @@ class ProductResource extends Resource
                             Column::make('tax')->heading('Tax'),
                             Column::make('quantity')->heading('Quantity'),
                         ])
-                ])
+                ]),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
