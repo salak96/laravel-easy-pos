@@ -11,7 +11,6 @@ use App\Filament\Resources\OrderResource\Pages\ListOrders;
 
 class OrderStats extends BaseWidget
 {
-
     use InteractsWithPageTable;
 
     protected function getTablePage(): string
@@ -21,19 +20,24 @@ class OrderStats extends BaseWidget
 
     protected function getStats(): array
     {
-        $currency_symbol = config('settings.currency_symbol');
+        $currency_symbol = config('settings.currency_symbol', 'Rp ');
+
+        $totalOrders = $this->getPageTableQuery()->count();
+        $totalIncome = $this->getPageTableQuery()->sum('total_price');
+        $formattedIncome = $currency_symbol . number_format($totalIncome, 0, ',', '.');
 
         return [
-            Stat::make('Total orders', $this->getPageTableQuery()->count())
-                    ->description("Total orders")
-                    ->descriptionIcon('heroicon-o-inbox-stack', IconPosition::Before)
-                    ->chart([1,5,10,50])
-                    ->color('success'),
-            Stat::make('Income', $currency_symbol.$this->getPageTableQuery()->sum('total_price'))
-                    ->description("Total income")
-                    ->descriptionIcon('heroicon-o-banknotes', IconPosition::Before)
-                    ->chart([1,5,30, 50])
-                    ->color('success'),
+            Stat::make('Jumlah Pesanan', $totalOrders)
+                ->description("Total pesanan")
+                ->descriptionIcon('heroicon-o-inbox-stack', IconPosition::Before)
+                ->chart([1, 5, 10, 50])
+                ->color('success'),
+
+            Stat::make('Total Pemasukan', $formattedIncome)
+                ->description("Total pemasukan dari pesanan")
+                ->descriptionIcon('heroicon-o-banknotes', IconPosition::Before)
+                ->chart([1, 5, 30, 50])
+                ->color('success'),
         ];
     }
 }
